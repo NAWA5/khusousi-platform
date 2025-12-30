@@ -7,10 +7,6 @@
   /* Slate-50 */
   --foreground: #0f172a;
   /* Slate-900 */
-
-  /* Primary Blue */
-  --primary: #2d9cdb;
-  /* Shroo7-inspired blue */
   --primary-foreground: #ffffff;
   --color-primary: #06B6D4;
 
@@ -78,20 +74,4 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-cairo), sans-serif;
-}
-
-html[dir='rtl'] {
-  direction: rtl;
-}
-
-body {
-  font-family: "Noto Sans Arabic", system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans Arabic', sans-serif;
-  background-color: #f8fafc;
-  color: #0f172a;
-}
-
-.container {
-  max-width: 1100px;
-  margin-inline: auto;
-  padding-inline: 1rem;
 }
