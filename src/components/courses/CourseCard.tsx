@@ -20,6 +20,9 @@ export interface CourseProps {
 }
 
 const CourseCard = ({ course }: { course: CourseProps }) => {
+    const sig = course.id ?? 0;
+    const fallbackSrc = course.thumbnail || course.image || `https://source.unsplash.com/800x600/?learning,coding,students,education&sig=${sig}`;
+
     return (
         <div className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all overflow-hidden flex flex-col h-full">
             {/* Course Image */}
@@ -27,7 +30,6 @@ const CourseCard = ({ course }: { course: CourseProps }) => {
                 {/* Placeholder for real image */}
                 <div className="absolute inset-0 bg-gray-200 animate-pulse" />
                 <Image
-                    src={course.image}
                     alt={course.title}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
