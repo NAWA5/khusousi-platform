@@ -76,7 +76,6 @@ const Header = () => {
                         {/* Theme Toggle */}
                         <button
                             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                            className="hidden sm:flex p-2 text-gray-600 hover:text-primary hover:bg-gray-50 rounded-full transition-colors"
                             aria-label="Toggle Theme"
                         >
                             {theme === 'dark' ? <Sun size={22} /> : <Moon size={22} />}

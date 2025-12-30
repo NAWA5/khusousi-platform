@@ -1,7 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
-import { BookOpen, Users, Award, ShieldCheck, ArrowLeft } from 'lucide-react';
-
 const Hero = () => {
     return (
         <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-50 py-16 sm:py-24 lg:py-28">
@@ -18,30 +15,10 @@ const Hero = () => {
                             <ShieldCheck className="text-primary" size={18} />
                             التعليم أصبح أسهل من ذي قبل
                         </div>
-
-                        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-5xl leading-tight">
-                            <span className="block mb-2">تعلم في أي مكان أو زمان</span>
-                            <span className="text-primary block">مع شروحات وجامعات موثوقة</span>
-                        </h1>
-
                         <p className="text-lg text-gray-600 max-w-2xl">
                             إن كنت طالب جامعي وتحتاج أي مساعدة أو تواجه صعوبة في موادك، نوفر لك محاضرات مسجلة، خطط دراسة، ومقررات متخصصة لكل جامعة وتخصص.
                         </p>
-
-                        <div className="flex flex-wrap gap-3">
-                            <button className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-primary text-white font-semibold shadow hover:bg-primary/90 transition-colors">
-                                سجل مجاناً
-                            </button>
-                            <button className="inline-flex items-center justify-center px-6 py-3 rounded-lg border border-gray-200 text-gray-800 font-semibold hover:border-primary hover:text-primary transition-colors">
-                                حدد جامعتك
-                                <ArrowLeft size={18} className="mr-2" />
-                            </button>
                         </div>
-
-                        <div className="flex flex-wrap gap-2 text-sm text-gray-600">
-                            <span className="px-3 py-2 bg-white border border-gray-100 rounded-full">محاضرات مسجلة</span>
-                            <span className="px-3 py-2 bg-white border border-gray-100 rounded-full">شرح حسب الخطة</span>
-                            <span className="px-3 py-2 bg-white border border-gray-100 rounded-full">ملخصات واختبارات</span>
                         </div>
 
                         <div className="grid grid-cols-3 gap-4 max-w-xl pt-4">
