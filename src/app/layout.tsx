@@ -1,46 +1,20 @@
-import type { Metadata } from "next";
-import { Cairo } from "next/font/google";
-import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import { CartProvider } from "@/context/CartContext";
-import { ThemeProvider } from "@/components/providers/ThemeProvider";
+'use client';
+import './styles/globals.css';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 
-const cairo = Cairo({
-  variable: "--font-cairo",
-  subsets: ["arabic"],
-  weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
-});
-
-export const metadata: Metadata = {
-  title: "خصوصي | Khusousi",
-  description: "منصة خصوصي التعليمية",
+export const metadata = {
+  title: 'Khusousi - منصة خاصة (Prototype)',
+  description: 'Prototype redesign inspired by shroo7.com',
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ar" dir="rtl" suppressHydrationWarning>
-      <body
-        className={`${cairo.variable} antialiased min-h-screen flex flex-col`}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <CartProvider>
-            <Header />
-            <main className="flex-1">
-              {children}
-            </main>
-            <Footer />
-          </CartProvider>
-        </ThemeProvider>
+    <html lang="ar" dir="rtl">
+      <body>
+        <Header />
+        <main className="min-h-[60vh]">{children}</main>
+        <Footer />
       </body>
     </html>
   );

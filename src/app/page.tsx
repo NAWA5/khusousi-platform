@@ -1,3 +1,5 @@
+'use client';
+
 import Hero from "@/components/home/Hero";
 import Categories from "@/components/home/Categories";
 import LatestCourses from "@/components/home/LatestCourses";
@@ -11,8 +13,9 @@ import JoinCTA from "@/components/home/JoinCTA";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <section className="container mx-auto px-4 py-8">
       <Hero />
+
       <Categories />
       <TopCategories />
       <Universities />
@@ -22,6 +25,6 @@ export default function Home() {
       <MobileAppCTA />
       <JoinCTA />
       <Features />
-    </div>
+    </section>
   );
 }
