@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Search, Filter, ChevronDown } from 'lucide-react';
+import { Filter } from 'lucide-react';
 import CourseCard, { CourseProps } from '@/components/courses/CourseCard';
 
 // Mock Data
@@ -12,73 +12,87 @@ const MOCK_COURSES: CourseProps[] = [
         title: "مقدمة في البرمجة بلغة جافا",
         university: "جامعة الملك سعود",
         instructor: "د. أحمد علي",
-        rating: 4.8,
-        reviews: 120,
-        price: 150,
-        originalPrice: 200,
-        image: "https://placehold.co/600x400/10b981/ffffff?text=Java+Course",
-        category: "علوم الحاسب"
-    },
-    {
-        id: 2,
-        title: "مبادئ الاقتصاد الجزئي",
-        university: "جامعة الإمام",
+    rating: 4.8,
+    reviews: 120,
+    price: 150,
+    originalPrice: 200,
+    image: "https://placehold.co/600x400/10b981/ffffff?text=Java+Course",
+    category: "علوم الحاسب",
+    lessons: 42,
+    duration: "18 ساعة",
+    badge: "الأكثر طلباً"
+  },
+  {
+    id: 2,
+    title: "مبادئ الاقتصاد الجزئي",
+    university: "جامعة الإمام",
         instructor: "أ. سارة محمد",
-        rating: 4.5,
-        reviews: 85,
-        price: 100,
-        originalPrice: 100,
-        image: "https://placehold.co/600x400/2563eb/ffffff?text=Microeconomics",
-        category: "إدارة أعمال"
-    },
-    {
-        id: 3,
-        title: "تفاضل وتكامل 101",
-        university: "جامعة الملك سعود",
+    rating: 4.5,
+    reviews: 85,
+    price: 100,
+    originalPrice: 100,
+    image: "https://placehold.co/600x400/2563eb/ffffff?text=Microeconomics",
+    category: "إدارة أعمال",
+    lessons: 30,
+    duration: "12 ساعة"
+  },
+  {
+    id: 3,
+    title: "تفاضل وتكامل 101",
+    university: "جامعة الملك سعود",
         instructor: "د. محمد حسن",
-        rating: 4.9,
-        reviews: 200,
-        price: 180,
-        originalPrice: 250,
-        image: "https://placehold.co/600x400/f59e0b/ffffff?text=Calculus+101",
-        category: "رياضيات"
-    },
-    {
-        id: 4,
-        title: "كيمياء عامة",
-        university: "جامعة الأميرة نورة",
+    rating: 4.9,
+    reviews: 200,
+    price: 180,
+    originalPrice: 250,
+    image: "https://placehold.co/600x400/f59e0b/ffffff?text=Calculus+101",
+    category: "رياضيات",
+    lessons: 55,
+    duration: "22 ساعة",
+    badge: "جديد"
+  },
+  {
+    id: 4,
+    title: "كيمياء عامة",
+    university: "جامعة الأميرة نورة",
         instructor: "د. ليلى خالد",
-        rating: 4.7,
-        reviews: 95,
-        price: 120,
-        originalPrice: 150,
-        image: "https://placehold.co/600x400/ec4899/ffffff?text=Chemistry",
-        category: "علوم"
-    },
-    {
-        id: 5,
-        title: "فيزياء 101",
+    rating: 4.7,
+    reviews: 95,
+    price: 120,
+    originalPrice: 150,
+    image: "https://placehold.co/600x400/ec4899/ffffff?text=Chemistry",
+    category: "علوم",
+    lessons: 36,
+    duration: "14 ساعة"
+  },
+  {
+    id: 5,
+    title: "فيزياء 101",
         university: "جامعة الملك فهد",
         instructor: "د. عمر فاروق",
-        rating: 4.6,
-        reviews: 70,
-        price: 130,
-        originalPrice: 160,
-        image: "https://placehold.co/600x400/6366f1/ffffff?text=Physics+101",
-        category: "علوم"
-    },
-    {
-        id: 6,
-        title: "محاسبة مالية",
+    rating: 4.6,
+    reviews: 70,
+    price: 130,
+    originalPrice: 160,
+    image: "https://placehold.co/600x400/6366f1/ffffff?text=Physics+101",
+    category: "علوم",
+    lessons: 40,
+    duration: "16 ساعة"
+  },
+  {
+    id: 6,
+    title: "محاسبة مالية",
         university: "جامعة الملك عبدالعزيز",
         instructor: "أ. هدى عبدالله",
-        rating: 4.4,
-        reviews: 50,
-        price: 90,
-        originalPrice: 120,
-        image: "https://placehold.co/600x400/14b8a6/ffffff?text=Accounting",
-        category: "إدارة أعمال"
-    }
+    rating: 4.4,
+    reviews: 50,
+    price: 90,
+    originalPrice: 120,
+    image: "https://placehold.co/600x400/14b8a6/ffffff?text=Accounting",
+    category: "إدارة أعمال",
+    lessons: 28,
+    duration: "10 ساعات"
+  }
 ];
 
 function CoursesContent() {
@@ -99,7 +113,11 @@ function CoursesContent() {
         return matchQuery && matchUni && matchCat;
     });
 
-    const toggleFilter = (state: string[], setter: any, value: string) => {
+    const toggleFilter = (
+        state: string[],
+        setter: React.Dispatch<React.SetStateAction<string[]>>,
+        value: string
+    ) => {
         if (state.includes(value)) {
             setter(state.filter((item: string) => item !== value));
         } else {
