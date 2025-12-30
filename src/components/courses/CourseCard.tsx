@@ -4,110 +4,113 @@ import Image from 'next/image';
 import { Star, BookOpen, User } from 'lucide-react';
 
 export interface CourseProps {
-    id: number;
-    title: string;
-    university: string;
-    instructor: string;
-    rating: number;
-    reviews: number;
-    price: number;
-    originalPrice: number;
-    image: string;
-    category: string;
-    lessons?: number;
-    duration?: string;
-    badge?: string;
+  id: number;
+  title: string;
+  university: string;
+  instructor: string;
+  rating: number;
+  reviews: number;
+  price: number;
+  originalPrice: number;
+  image?: string;
+  thumbnail?: string;
+  category: string;
+  lessons?: number;
+  duration?: string;
+  badge?: string;
 }
 
 const CourseCard = ({ course }: { course: CourseProps }) => {
-    const sig = course.id ?? 0;
-    const fallbackSrc = course.thumbnail || course.image || `https://source.unsplash.com/800x600/?learning,coding,students,education&sig=${sig}`;
+  const sig = course.id ?? Math.floor(Math.random() * 1000);
+  const fallbackSrc =
+    course.thumbnail || course.image || `https://source.unsplash.com/800x600/?learning,coding,students,education&sig=${sig}`;
 
-    return (
-        <div className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all overflow-hidden flex flex-col h-full">
-            {/* Course Image */}
-            <div className="relative aspect-video bg-gray-100 overflow-hidden">
-                {/* Placeholder for real image */}
-                <div className="absolute inset-0 bg-gray-200 animate-pulse" />
-                <Image
-                    alt={course.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                {course.badge && (
-                    <div className="absolute top-3 left-3 bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
-                        {course.badge}
-                    </div>
-                )}
-                <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-bold text-gray-700">
-                    {course.category}
-                </div>
-            </div>
-
-            {/* Content */}
-            <div className="p-5 flex-1 flex flex-col">
-                <div className="flex items-center gap-1 text-xs text-primary font-medium mb-2">
-                    <User size={14} />
-                    <span>{course.university}</span>
-                </div>
-
-                <h3 className="font-bold text-gray-900 mb-2 line-clamp-2 flex-1 group-hover:text-primary transition-colors">
-                    <Link href={`/courses/${course.id}`}>
-                        {course.title}
-                    </Link>
-                </h3>
-
-                <div className="flex items-center gap-2 mb-4 text-sm text-gray-500">
-                    <Image
-                        src={`https://ui-avatars.com/api/?name=${course.instructor}&background=random`}
-                        alt={course.instructor}
-                        width={28}
-                        height={28}
-                        className="w-7 h-7 rounded-full object-cover"
-                    />
-                    <span>{course.instructor}</span>
-                </div>
-
-                <div className="flex items-center gap-2 mb-4">
-                    <div className="flex items-center text-yellow-400 gap-0.5">
-                        <Star size={16} fill="currentColor" />
-                        <span className="text-gray-900 font-bold ml-1 text-sm">{course.rating}</span>
-                    </div>
-                    <span className="text-xs text-gray-400">({course.reviews} تقييم)</span>
-                </div>
-
-                {(course.lessons || course.duration) && (
-                    <div className="flex items-center gap-3 text-xs text-gray-500 bg-gray-50 rounded-lg p-2 mb-4">
-                        {course.lessons && (
-                            <div className="flex items-center gap-1">
-                                <BookOpen size={14} className="text-primary" />
-                                <span>{course.lessons} درس</span>
-                            </div>
-                        )}
-                        {course.duration && (
-                            <div className="flex items-center gap-1">
-                                <Star size={14} className="text-amber-500" />
-                                <span>{course.duration}</span>
-                            </div>
-                        )}
-                    </div>
-                )}
-
-                <div className="border-t border-gray-100 pt-4 mt-auto flex items-center justify-between">
-                    <div className="flex flex-col">
-                        {course.price < course.originalPrice && (
-                            <span className="text-xs text-gray-400 line-through">{course.originalPrice} ر.س</span>
-                        )}
-                        <span className="text-lg font-bold text-primary">{course.price} ر.س</span>
-                    </div>
-                    <button className="p-2 text-gray-500 hover:bg-gray-50 rounded-full hover:text-primary transition-colors">
-                        <BookOpen size={20} />
-                    </button>
-                </div>
-            </div>
+  return (
+    <div className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all overflow-hidden flex flex-col h-full">
+      {/* Course Image */}
+      <div className="relative aspect-video bg-gray-100 overflow-hidden">
+        {/* Placeholder for real image */}
+        <div className="absolute inset-0 bg-gray-200 animate-pulse" />
+        <Image
+          src={fallbackSrc}
+          alt={course.title}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+          className="object-cover group-hover:scale-105 transition-transform duration-300"
+        />
+        {course.badge && (
+          <div className="absolute top-3 left-3 bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
+            {course.badge}
+          </div>
+        )}
+        <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-bold text-gray-700">
+          {course.category}
         </div>
-    );
+      </div>
+
+      {/* Content */}
+      <div className="p-5 flex-1 flex flex-col">
+        <div className="flex items-center gap-1 text-xs text-primary font-medium mb-2">
+          <User size={14} />
+          <span>{course.university}</span>
+        </div>
+
+        <h3 className="font-bold text-gray-900 mb-2 line-clamp-2 flex-1 group-hover:text-primary transition-colors">
+          <Link href={`/courses/${course.id}`}>
+            {course.title}
+          </Link>
+        </h3>
+
+        <div className="flex items-center gap-2 mb-4 text-sm text-gray-500">
+          <Image
+            src={`https://ui-avatars.com/api/?name=${encodeURIComponent(course.instructor)}&background=random`}
+            alt={course.instructor}
+            width={28}
+            height={28}
+            className="w-7 h-7 rounded-full object-cover"
+          />
+          <span>{course.instructor}</span>
+        </div>
+
+        <div className="flex items-center gap-2 mb-4">
+          <div className="flex items-center text-yellow-400 gap-0.5">
+            <Star size={16} fill="currentColor" />
+            <span className="text-gray-900 font-bold ml-1 text-sm">{course.rating}</span>
+          </div>
+          <span className="text-xs text-gray-400">({course.reviews} تقييم)</span>
+        </div>
+
+        {(course.lessons || course.duration) && (
+          <div className="flex items-center gap-3 text-xs text-gray-500 bg-gray-50 rounded-lg p-2 mb-4">
+            {course.lessons && (
+              <div className="flex items-center gap-1">
+                <BookOpen size={14} className="text-primary" />
+                <span>{course.lessons} درس</span>
+              </div>
+            )}
+            {course.duration && (
+              <div className="flex items-center gap-1">
+                <Star size={14} className="text-amber-500" />
+                <span>{course.duration}</span>
+              </div>
+            )}
+          </div>
+        )}
+
+        <div className="border-t border-gray-100 pt-4 mt-auto flex items-center justify-between">
+          <div className="flex flex-col">
+            {course.price < course.originalPrice && (
+              <span className="text-xs text-gray-400 line-through">{course.originalPrice} ر.س</span>
+            )}
+            <span className="text-lg font-bold text-primary">{course.price} ر.س</span>
+          </div>
+          <button className="p-2 text-gray-500 hover:bg-gray-50 rounded-full hover:text-primary transition-colors" aria-label="إضافة إلى المفضلة">
+            <BookOpen size={20} />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default CourseCard;

@@ -1,59 +1,55 @@
-@import "tailwindcss";
 /* Import Noto Sans Arabic from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap');
 
-:root {
-  --background: #f8fafc;
-  /* Slate-50 */
-  --foreground: #0f172a;
-  /* Slate-900 */
-  --primary-foreground: #ffffff;
-  --color-primary: #06B6D4;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  --secondary: #1e40af;
-  /* Indigo-800 */
+:root {
+  --background: #f8fafc; /* Slate-50 */
+  --foreground: #0f172a; /* Slate-900 */
+
+  /* Primary (chosen: أزرق سماوي) */
+  --primary: #06B6D4;
+  --primary-foreground: #ffffff;
+
+  --secondary: #1e40af; /* Indigo-800 */
   --secondary-foreground: #ffffff;
 
-  --muted: #f1f5f9;
-  /* Slate-100 */
-  --muted-foreground: #64748b;
-  /* Slate-500 */
+  --muted: #f1f5f9; /* Slate-100 */
+  --muted-foreground: #64748b; /* Slate-500 */
 
   --card: #ffffff;
   --card-foreground: #0f172a;
 
-  --border: #e2e8f0;
-  /* Slate-200 */
+  --border: #e2e8f0; /* Slate-200 */
+
+  /* خط افتراضي عام */
+  --font-sans: "Noto Sans Arabic", system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans Arabic', sans-serif;
 }
 
+/* وضع داكن (يمكن تفعيله بإضافة .dark على html أو body) */
 .dark {
-  --background: #020617;
-  /* Slate-950 */
-  --foreground: #f8fafc;
-  /* Slate-50 */
+  --background: #020617; /* Slate-950 */
+  --foreground: #f8fafc; /* Slate-50 */
 
-  --primary: #2d9cdb;
-  /* Shroo7-inspired blue */
+  --primary: #06B6D4;
   --primary-foreground: #ffffff;
 
-  --secondary: #3b82f6;
-  /* Blue-500 */
+  --secondary: #3b82f6; /* Blue-500 */
   --secondary-foreground: #ffffff;
 
-  --muted: #1e293b;
-  /* Slate-800 */
-  --muted-foreground: #94a3b8;
-  /* Slate-400 */
+  --muted: #1e293b; /* Slate-800 */
+  --muted-foreground: #94a3b8; /* Slate-400 */
 
-  --card: #0f172a;
-  /* Slate-900 */
+  --card: #0f172a; /* Slate-900 */
   --card-foreground: #f8fafc;
 
-  --border: #1e293b;
-  /* Slate-800 */
+  --border: #1e293b; /* Slate-800 */
 }
 
-@theme inline {
+/* خريطة متغيرات مساعدة للاستخدام المباشر إن رغبت */
+:root {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
@@ -65,15 +61,6 @@
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-border: var(--border);
-
-  --font-cairo: var(--font-cairo);
-  --font-sans: var(--font-cairo), sans-serif;
-}
-
-body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-cairo), sans-serif;
 }
 
 html[dir='rtl'] {
@@ -81,9 +68,12 @@ html[dir='rtl'] {
 }
 
 body {
-  font-family: "Noto Sans Arabic", system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans Arabic', sans-serif;
-  background-color: #f8fafc;
-  color: #0f172a;
+  font-family: var(--font-sans);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
 }
 
 .container {
