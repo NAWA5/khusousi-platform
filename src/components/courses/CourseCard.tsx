@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Star, BookOpen, User } from 'lucide-react';
 
 export interface CourseProps {
@@ -13,6 +14,9 @@ export interface CourseProps {
     originalPrice: number;
     image: string;
     category: string;
+    lessons?: number;
+    duration?: string;
+    badge?: string;
 }
 
 const CourseCard = ({ course }: { course: CourseProps }) => {
@@ -22,12 +26,18 @@ const CourseCard = ({ course }: { course: CourseProps }) => {
             <div className="relative aspect-video bg-gray-100 overflow-hidden">
                 {/* Placeholder for real image */}
                 <div className="absolute inset-0 bg-gray-200 animate-pulse" />
-                <img
+                <Image
                     src={course.image}
                     alt={course.title}
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
+                {course.badge && (
+                    <div className="absolute top-3 left-3 bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
+                        {course.badge}
+                    </div>
+                )}
                 <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-bold text-gray-700">
                     {course.category}
                 </div>
@@ -47,7 +57,13 @@ const CourseCard = ({ course }: { course: CourseProps }) => {
                 </h3>
 
                 <div className="flex items-center gap-2 mb-4 text-sm text-gray-500">
-                    <img src={`https://ui-avatars.com/api/?name=${course.instructor}&background=random`} alt={course.instructor} className="w-6 h-6 rounded-full" />
+                    <Image
+                        src={`https://ui-avatars.com/api/?name=${course.instructor}&background=random`}
+                        alt={course.instructor}
+                        width={28}
+                        height={28}
+                        className="w-7 h-7 rounded-full object-cover"
+                    />
                     <span>{course.instructor}</span>
                 </div>
 
@@ -58,6 +74,23 @@ const CourseCard = ({ course }: { course: CourseProps }) => {
                     </div>
                     <span className="text-xs text-gray-400">({course.reviews} تقييم)</span>
                 </div>
+
+                {(course.lessons || course.duration) && (
+                    <div className="flex items-center gap-3 text-xs text-gray-500 bg-gray-50 rounded-lg p-2 mb-4">
+                        {course.lessons && (
+                            <div className="flex items-center gap-1">
+                                <BookOpen size={14} className="text-primary" />
+                                <span>{course.lessons} درس</span>
+                            </div>
+                        )}
+                        {course.duration && (
+                            <div className="flex items-center gap-1">
+                                <Star size={14} className="text-amber-500" />
+                                <span>{course.duration}</span>
+                            </div>
+                        )}
+                    </div>
+                )}
 
                 <div className="border-t border-gray-100 pt-4 mt-auto flex items-center justify-between">
                     <div className="flex flex-col">

@@ -6,13 +6,13 @@
   --foreground: #0f172a;
   /* Slate-900 */
 
-  /* Primary Green */
-  --primary: #10b981;
-  /* Emerald-500 */
+  /* Primary Blue */
+  --primary: #2d9cdb;
+  /* Shroo7-inspired blue */
   --primary-foreground: #ffffff;
 
-  --secondary: #2563eb;
-  /* Blue-600 */
+  --secondary: #1e40af;
+  /* Indigo-800 */
   --secondary-foreground: #ffffff;
 
   --muted: #f1f5f9;
@@ -33,8 +33,8 @@
   --foreground: #f8fafc;
   /* Slate-50 */
 
-  --primary: #10b981;
-  /* Emerald-500 */
+  --primary: #2d9cdb;
+  /* Shroo7-inspired blue */
   --primary-foreground: #ffffff;
 
   --secondary: #3b82f6;
