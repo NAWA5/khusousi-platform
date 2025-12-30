@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { School, Book, GraduationCap, Microscope, Calculator } from 'lucide-react';
+import { School, GraduationCap, Microscope, Calculator } from 'lucide-react';
 
 const categories = [
     {
