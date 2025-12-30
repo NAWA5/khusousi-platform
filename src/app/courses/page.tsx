@@ -1,5 +1,3 @@
-import CourseCard from '../../components/CourseCard';
-import FiltersPanel from '../../components/FiltersPanel';
 export default function CoursesPage() {
   return (
     <section className="container mx-auto px-4 py-8">

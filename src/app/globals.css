@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* Import Noto Sans Arabic from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap');
 
 :root {
   --background: #f8fafc;
@@ -6,6 +8,7 @@
   --foreground: #0f172a;
   /* Slate-900 */
   --primary-foreground: #ffffff;
+  --color-primary: #06B6D4;
 
   --secondary: #1e40af;
   /* Indigo-800 */
