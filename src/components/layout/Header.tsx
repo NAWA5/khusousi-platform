@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Search, Menu, User, ShoppingCart, Sun, Moon } from 'lucide-react';
@@ -11,13 +11,7 @@ const Header = () => {
     const router = useRouter();
     const { cartCount } = useCart();
     const { theme, setTheme } = useTheme();
-    const [mounted, setMounted] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
-
-    // Avoid hydration mismatch
-    useEffect(() => {
-        setMounted(true);
-    }, []);
 
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();
@@ -72,15 +66,13 @@ const Header = () => {
                         <div className="h-6 w-px bg-gray-200 dark:bg-gray-700 hidden lg:block"></div>
 
                         {/* Theme Toggle */}
-                        {mounted && (
-                            <button
-                                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                                className="p-2 text-gray-600 dark:text-gray-300 hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800 rounded-full transition-colors hidden sm:block"
-                                aria-label="Toggle Theme"
-                            >
-                                {theme === 'dark' ? <Sun size={22} /> : <Moon size={22} />}
-                            </button>
-                        )}
+                        <button
+                            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                            className="p-2 text-gray-600 dark:text-gray-300 hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800 rounded-full transition-colors hidden sm:block"
+                            aria-label="Toggle Theme"
+                        >
+                            {theme === 'dark' ? <Sun size={22} /> : <Moon size={22} />}
+                        </button>
 
                         {/* Cart */}
                         <button className="p-2 text-gray-600 dark:text-gray-300 hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800 rounded-full transition-colors relative">

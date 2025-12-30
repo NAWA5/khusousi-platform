@@ -13,7 +13,10 @@ const courses: CourseProps[] = [
         price: 150,
         originalPrice: 200,
         image: "https://placehold.co/600x400/10b981/ffffff?text=Java+Course",
-        category: "علوم الحاسب"
+        category: "علوم الحاسب",
+        lessons: 42,
+        duration: "18 ساعة",
+        badge: "الأكثر طلباً"
     },
     {
         id: 2,
@@ -25,7 +28,9 @@ const courses: CourseProps[] = [
         price: 100,
         originalPrice: 100,
         image: "https://placehold.co/600x400/2563eb/ffffff?text=Microeconomics",
-        category: "إدارة أعمال"
+        category: "إدارة أعمال",
+        lessons: 30,
+        duration: "12 ساعة"
     },
     {
         id: 3,
@@ -37,7 +42,10 @@ const courses: CourseProps[] = [
         price: 180,
         originalPrice: 250,
         image: "https://placehold.co/600x400/f59e0b/ffffff?text=Calculus+101",
-        category: "رياضيات"
+        category: "رياضيات",
+        lessons: 55,
+        duration: "22 ساعة",
+        badge: "جديد"
     },
     {
         id: 4,
@@ -49,7 +57,9 @@ const courses: CourseProps[] = [
         price: 120,
         originalPrice: 150,
         image: "https://placehold.co/600x400/ec4899/ffffff?text=Chemistry",
-        category: "علوم"
+        category: "علوم",
+        lessons: 36,
+        duration: "14 ساعة"
     }
 ];
 
