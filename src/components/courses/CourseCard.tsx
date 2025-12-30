@@ -17,8 +17,6 @@ export interface CourseProps {
     lessons?: number;
     duration?: string;
     badge?: string;
-    thumbnail?: string;
-    teacher?: string;
 }
 
 const CourseCard = ({ course }: { course: CourseProps }) => {
@@ -32,7 +30,6 @@ const CourseCard = ({ course }: { course: CourseProps }) => {
                 {/* Placeholder for real image */}
                 <div className="absolute inset-0 bg-gray-200 animate-pulse" />
                 <Image
-                    src={fallbackSrc}
                     alt={course.title}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
