@@ -23,27 +23,23 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
-    const [cartItems, setCartItems] = useState<CartItem[]>([]);
-    const [isInitialized, setIsInitialized] = useState(false);
-
-    // Load from localStorage on mount
-    useEffect(() => {
+    const [cartItems, setCartItems] = useState<CartItem[]>(() => {
+        if (typeof window === 'undefined') return [];
         const savedCart = localStorage.getItem('khusousi-cart');
-        if (savedCart) {
-            try {
-                setCartItems(JSON.parse(savedCart));
-            } catch (e) {
-                console.error("Failed to parse cart", e);
-            }
+        if (!savedCart) return [];
+        try {
+            return JSON.parse(savedCart) as CartItem[];
+        } catch (e) {
+            console.error("Failed to parse cart", e);
+            return [];
         }
-        setIsInitialized(true);
-    }, []);
+    });
 
-    // Save to localStorage needed whenever cart changes
+    // Save to localStorage whenever cart changes (skip during SSR)
     useEffect(() => {
-        if (!isInitialized) return;
+        if (typeof window === 'undefined') return;
         localStorage.setItem('khusousi-cart', JSON.stringify(cartItems));
-    }, [cartItems, isInitialized]);
+    }, [cartItems]);
 
     const addToCart = (item: CartItem) => {
         setCartItems((prev) => {

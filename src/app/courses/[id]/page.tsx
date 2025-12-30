@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
     Play,
     Lock,
@@ -9,9 +10,7 @@ import {
     Star,
     Clock,
     FileText,
-    Download,
-    Share2,
-    AlertCircle
+    Share2
 } from 'lucide-react';
 
 export default function CourseDetailsPage() {
@@ -129,7 +128,13 @@ export default function CourseDetailsPage() {
 
                             {/* Instructor Small Card */}
                             <div className="flex items-center gap-4 p-4 bg-white rounded-xl border border-gray-100">
-                                <img src={course.instructor.image} alt={course.instructor.name} className="w-12 h-12 rounded-full" />
+                                <Image
+                                    src={course.instructor.image}
+                                    alt={course.instructor.name}
+                                    width={48}
+                                    height={48}
+                                    className="w-12 h-12 rounded-full object-cover"
+                                />
                                 <div>
                                     <p className="font-bold text-gray-900">{course.instructor.name}</p>
                                     <p className="text-sm text-gray-500">{course.instructor.title}</p>
