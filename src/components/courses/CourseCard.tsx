@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Star, BookOpen, User } from 'lucide-react';
 
 export interface CourseProps {
@@ -25,11 +26,12 @@ const CourseCard = ({ course }: { course: CourseProps }) => {
             <div className="relative aspect-video bg-gray-100 overflow-hidden">
                 {/* Placeholder for real image */}
                 <div className="absolute inset-0 bg-gray-200 animate-pulse" />
-                <img
+                <Image
                     src={course.image}
                     alt={course.title}
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 {course.badge && (
                     <div className="absolute top-3 left-3 bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
@@ -55,7 +57,13 @@ const CourseCard = ({ course }: { course: CourseProps }) => {
                 </h3>
 
                 <div className="flex items-center gap-2 mb-4 text-sm text-gray-500">
-                    <img src={`https://ui-avatars.com/api/?name=${course.instructor}&background=random`} alt={course.instructor} className="w-6 h-6 rounded-full" />
+                    <Image
+                        src={`https://ui-avatars.com/api/?name=${course.instructor}&background=random`}
+                        alt={course.instructor}
+                        width={28}
+                        height={28}
+                        className="w-7 h-7 rounded-full object-cover"
+                    />
                     <span>{course.instructor}</span>
                 </div>
 
